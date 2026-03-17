@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Control de horas por huella</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Sistema de horas por categorías (huella)</h1>
+      <p>
+        Cargue los registros exportados del aparato de ingreso (CSV) para discriminar
+        horas trabajadas por categoría.
+      </p>
+
+      <section class="card">
+        <h2>1) Cargar registros</h2>
+        <input type="file" id="fileInput" accept=".csv,text/csv" />
+        <small>Formato esperado: <code>empleado,categoria,fecha_hora,tipo</code> donde tipo es <code>entrada</code> o <code>salida</code>.</small>
+      </section>
+
+      <section class="card grid">
+        <div>
+          <h2>2) Filtros</h2>
+          <label>
+            Desde
+            <input type="date" id="fromDate" />
+          </label>
+          <label>
+            Hasta
+            <input type="date" id="toDate" />
+          </label>
+          <button id="runBtn">Procesar horas</button>
+        </div>
+        <div>
+          <h2>Ejemplo de CSV</h2>
+          <pre>empleado,categoria,fecha_hora,tipo
+Ana,Operaciones,2026-03-10 08:00,entrada
+Ana,Operaciones,2026-03-10 12:00,salida
+Ana,Capacitación,2026-03-10 13:00,entrada
+Ana,Capacitación,2026-03-10 17:00,salida</pre>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3) Resumen por categoría</h2>
+        <table id="summaryTable">
+          <thead>
+            <tr>
+              <th>Categoría</th>
+              <th>Horas</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>4) Detalle por empleado y categoría</h2>
+        <table id="detailTable">
+          <thead>
+            <tr>
+              <th>Empleado</th>
+              <th>Categoría</th>
+              <th>Horas</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <p id="status" class="status"></p>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
